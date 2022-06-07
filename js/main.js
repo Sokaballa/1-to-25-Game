@@ -55,6 +55,8 @@ document.querySelector('button').onclick = function() {
     setTimeout(randomCreator, 3000);
 }
 
+// Get selected box from user
+
 function getSelectedBox() {
   console.log()
   currentBox = event.target.className.split(' ')[0]
@@ -63,14 +65,15 @@ function getSelectedBox() {
 
 }
 
+// Check to see whether the box selected is correct or not.
+// Still in the process of adding a red color to selections
+// that are invalid.
+
 function gameStartCheck() {
   console.log(currentBox)
   console.log(currentBoxNumber)
   console.log(oldBoxNumber)
 
-  // function correctBoxShading() {
-  //   document.querySelector(`.${currentBox}`).classList.add('correctbox');
-  // }
   // function wrongBox() {
   //   document.querySelector(`.${currentBox}`).classList.add('incorrectbox');
   // }
@@ -82,16 +85,17 @@ function gameStartCheck() {
   if (currentBox === 'box1') {
     document.querySelector(`.box1`).style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
     document.querySelector(`.box1`).style.color = 'white';
-    // document.querySelector(`.box1`).addEventListener('mousedown', correctBoxShading)
 
   } else if (document.querySelector(`.box${oldBoxNumber}`).style.color == 'white') {
         document.querySelector(`.${currentBox}`).style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
         document.querySelector(`.${currentBox}`).style.color = 'white';
-        // document.querySelector(`.${currentBox}`).addEventListener('mousedown', correctBoxShading)
+
   } else {
         // document.querySelector(`.${currentBox}`).addEventListener('mousedown', wrongBox)
         // document.querySelector(`.${currentBox}`).addEventListener('mouseup', wrongBoxUnpress)
   }
+
+  //Finally, reset selected box.
 
   currentBoxNumber = ""
   currentBox = ""
@@ -139,13 +143,14 @@ function gameResult() {
   gameReward();
 }
 
+// Game Rewards
+
 function gameReward() {
-;
   const sectionReward = document.createElement('section')
   const sectionRewardTime = document.createElement('section')
   sectionRewardTime.innerHTML = `<span>${deltaTime} seconds</span>`
   sectionRewardTime.className = 'timer'
-  const sectionRewardRupee = document.querySelector('section');
+  const sectionRewardRupee = document.querySelector('section')
   sectionRewardRupee.innerHTML =`<span>+${rupeeAdd} Rupees</span>`
   sectionRewardRupee.className = 'rupeereward'
 
@@ -204,7 +209,6 @@ function gameReward() {
 
 }
 
-
 // Breakpoints.
   // breakpoints({
   //   xlarge:  [ '1201px',  '1800px' ],
@@ -213,4 +217,3 @@ function gameReward() {
   //   small:   [ '481px',   '768px'  ],
   //   xsmall:  [ null,      '480px'  ],
   // });
-
