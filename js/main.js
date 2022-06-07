@@ -1,14 +1,20 @@
 
 // Event Listeners
-  document.body.addEventListener('click', gameStartCheck)
+  
+document.querySelector('.gamecontainer').addEventListener('click', getSelectedBox)
+document.querySelector('.gamecontainer').addEventListener('click', gameStartCheck)
 
 // Global Values
 
   const totalNumber = 25;
   let numberArray = [];
   let deltaTime = 0;
+  let stopTime = true
   let rupeeAdd = "";
   let newRupeeTotal = "";
+  let currentBox = ""
+  let currentBoxNumber = ""
+  let oldBoxNumber = ""
 
 // Number Randomizer Array and Random Array Creator
 
@@ -39,7 +45,7 @@ function randomCreator() {
 
 // Game Start Button Disappearing 3 Seconds After Clicking
 
-  document.querySelector('button').onclick = function() {
+document.querySelector('button').onclick = function() {
     document.querySelector('button').style.display = "none";
     if (document.querySelector('.boxreward') != null) {
       document.querySelector('.boxreward').remove()
@@ -47,498 +53,53 @@ function randomCreator() {
       document.querySelector('.rupeeboxreward').remove();
     }
     setTimeout(randomCreator, 3000);
-  }
+}
 
-// WIP LOOP - How to Make?
+function getSelectedBox() {
+  console.log()
+  currentBox = event.target.className.split(' ')[0]
+  currentBoxNumber = currentBox.substring(3)
+  oldBoxNumber = `${currentBoxNumber - 1}`
 
-// function gameStartCheck() {
-//   if (document.querySelector('.box1') === null) {
-//     console.log("Game hasn't started");
-//   } else {
-//     const correctColor = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-//     console.log('Game has started!')
-//
-//       for (i = 1; i <= totalNumber; i++) {
-//         let boxSelector = document.querySelector(`.box${i}`).style.backgroundImage;
-//
-//         let previousBox = i - 1;
-//         let previousBoxSelector = document.querySelector(`.box${previousBox}`);
-//
-//         if (i == 1) {
-//           document.querySelector(`.box${i}`).onclick = function() {
-//             document.querySelector(`.box${i}`).style.backgroundImage = correctColor;
-//           }
-//         } else {
-//             if (document.querySelector(`.box${previousBox}`).style.background == correctColor) {
-//               document.querySelector(`.box${i}`).onclick = function() {
-//                 document.querySelector(`.box${i}`).style.backgroundImage = correctColor;
-//               }
-//             } else {
-//                 document.querySelector(`.box${i}`).addEventListener('mousedown', wrongBox)
-//                   function wrongBox() {
-//                     document.querySelector(`.box${i}`).classList.add('incorrectbox');
-//                   }
-//             }
-//         }
-//       }
-//     }
-//   }
-
-  // const gameStartCheck = document.querySelector('.box1') vs writing it out ?;
-
-
-  // THIS BOX SELECTOR WORKS
+}
 
 function gameStartCheck() {
-    //First click doesn't work, don't think box has loaded yet. Value is null when trying to click. why?
-    document.querySelector('.box1').onclick = function() {
-
-      document.querySelector('.box1').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-      document.querySelector('.box1').style.color = 'white';
-      document.querySelector('.box1').addEventListener('mousedown', correctBoxShading)
-      function correctBoxShading() {
-          document.querySelector('.box1').classList.add('correctbox');
-      }
-    }
-
-    document.querySelector('.box2').onclick = function() {
-
-      if (document.querySelector('.box1').style.color == 'white') {
-
-        document.querySelector('.box2').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box2').style.color = 'white';
-        document.querySelector('.box2').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box2').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box2').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box2').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box3').onclick = function() {
-
-      if (document.querySelector('.box2').style.color == 'white') {
-
-        document.querySelector('.box3').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box3').style.color = 'white';
-        document.querySelector('.box3').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box3').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box3').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box3').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box4').onclick = function() {
-
-      if (document.querySelector('.box3').style.color == 'white') {
-
-        document.querySelector('.box4').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box4').style.color = 'white';
-        document.querySelector('.box4').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box4').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box4').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box4').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box5').onclick = function() {
-
-      if (document.querySelector('.box4').style.color == 'white') {
-
-        document.querySelector('.box5').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box5').style.color = 'white';
-        document.querySelector('.box5').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box5').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box5').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box5').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box6').onclick = function() {
-
-      if (document.querySelector('.box5').style.color == 'white') {
-
-        document.querySelector('.box6').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box6').style.color = 'white';
-        document.querySelector('.box6').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box6').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box6').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box6').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box7').onclick = function() {
-
-      if (document.querySelector('.box6').style.color == 'white') {
-
-        document.querySelector('.box7').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box7').style.color = 'white';
-        document.querySelector('.box7').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box7').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box7').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box7').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box8').onclick = function() {
-
-      if (document.querySelector('.box7').style.color == 'white') {
-
-        document.querySelector('.box8').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box8').style.color = 'white';
-        document.querySelector('.box8').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box8').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box8').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box8').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box9').onclick = function() {
-
-      if (document.querySelector('.box8').style.color == 'white') {
-
-        document.querySelector('.box9').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box9').style.color = 'white';
-        document.querySelector('.box9').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box9').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box9').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box9').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box10').onclick = function() {
-
-      if (document.querySelector('.box9').style.color == 'white') {
-
-        document.querySelector('.box10').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box10').style.color = 'white';
-        document.querySelector('.box10').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box10').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box10').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box10').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box11').onclick = function() {
-
-      if (document.querySelector('.box10').style.color == 'white') {
-
-        document.querySelector('.box11').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box11').style.color = 'white';
-        document.querySelector('.box11').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box11').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box11').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box11').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box12').onclick = function() {
-
-      if (document.querySelector('.box11').style.color == 'white') {
-
-        document.querySelector('.box12').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box12').style.color = 'white';
-        document.querySelector('.box12').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box12').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box12').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box12').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box13').onclick = function() {
-
-      if (document.querySelector('.box12').style.color == 'white') {
-
-        document.querySelector('.box13').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box13').style.color = 'white';
-        document.querySelector('.box13').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box13').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box13').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box13').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box14').onclick = function() {
-
-      if (document.querySelector('.box13').style.color == 'white') {
-
-        document.querySelector('.box14').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box14').style.color = 'white';
-        document.querySelector('.box14').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box14').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box14').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box14').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box15').onclick = function() {
-
-      if (document.querySelector('.box14').style.color == 'white') {
-
-        document.querySelector('.box15').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box15').style.color = 'white';
-        document.querySelector('.box15').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box15').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box15').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box15').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box16').onclick = function() {
-
-      if (document.querySelector('.box15').style.color == 'white') {
-
-        document.querySelector('.box16').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box16').style.color = 'white';
-        document.querySelector('.box16').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box16').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box16').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box16').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box17').onclick = function() {
-
-      if (document.querySelector('.box16').style.color == 'white') {
-
-        document.querySelector('.box17').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box17').style.color = 'white';
-        document.querySelector('.box17').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box17').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box17').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box17').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box18').onclick = function() {
-
-      if (document.querySelector('.box17').style.color == 'white') {
-
-        document.querySelector('.box18').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box18').style.color = 'white';
-        document.querySelector('.box18').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box18').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box18').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box18').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box19').onclick = function() {
-
-      if (document.querySelector('.box18').style.color == 'white') {
-
-        document.querySelector('.box19').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box19').style.color = 'white';
-        document.querySelector('.box19').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box19').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box19').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box19').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box20').onclick = function() {
-
-      if (document.querySelector('.box19').style.color == 'white') {
-
-        document.querySelector('.box20').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box20').style.color = 'white';
-        document.querySelector('.box20').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box20').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box20').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box20').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box21').onclick = function() {
-
-      if (document.querySelector('.box20').style.color == 'white') {
-
-        document.querySelector('.box21').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box21').style.color = 'white';
-        document.querySelector('.box21').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box21').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box21').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box21').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box22').onclick = function() {
-
-      if (document.querySelector('.box21').style.color == 'white') {
-
-        document.querySelector('.box22').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box22').style.color = 'white';
-        document.querySelector('.box22').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box22').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box22').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box22').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box23').onclick = function() {
-
-      if (document.querySelector('.box22').style.color == 'white') {
-
-        document.querySelector('.box23').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box23').style.color = 'white';
-        document.querySelector('.box23').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box23').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box23').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box23').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box24').onclick = function() {
-
-      if (document.querySelector('.box23').style.color == 'white') {
-
-        document.querySelector('.box24').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box24').style.color = 'white';
-        document.querySelector('.box24').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box24').classList.add('correctbox');
-        }
-      } else {
-          document.querySelector('.box24').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box24').classList.add('incorrectbox');
-          }
-      }
-    }
-
-    document.querySelector('.box25').onclick = function() {
-
-      if (document.querySelector('.box24').style.color == 'white') {
-
-        document.querySelector('.box25').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
-        document.querySelector('.box25').style.color = 'white';
-        document.querySelector('.box25').addEventListener('mousedown', correctBoxShading)
-        function correctBoxShading() {
-            document.querySelector('.box25').classList.add('correctbox');
-        gameFinish();
-        }
-      } else {
-          document.querySelector('.box25').addEventListener('mousedown', wrongBox)
-          function wrongBox() {
-            document.querySelector('.box25').classList.add('incorrectbox');
-          }
-      }
-    }
-
+  console.log(currentBox)
+  console.log(currentBoxNumber)
+  console.log(oldBoxNumber)
+
+  // function correctBoxShading() {
+  //   document.querySelector(`.${currentBox}`).classList.add('correctbox');
+  // }
+  // function wrongBox() {
+  //   document.querySelector(`.${currentBox}`).classList.add('incorrectbox');
+  // }
+
+  // function wrongBoxUnpress() {
+  //   document.querySelector(`.${currentBox}`).classList.remove('incorrectbox')
+  // }
+
+  if (currentBox === 'box1') {
+    document.querySelector(`.box1`).style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
+    document.querySelector(`.box1`).style.color = 'white';
+    // document.querySelector(`.box1`).addEventListener('mousedown', correctBoxShading)
+
+  } else if (document.querySelector(`.box${oldBoxNumber}`).style.color == 'white') {
+        document.querySelector(`.${currentBox}`).style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
+        document.querySelector(`.${currentBox}`).style.color = 'white';
+        // document.querySelector(`.${currentBox}`).addEventListener('mousedown', correctBoxShading)
+  } else {
+        // document.querySelector(`.${currentBox}`).addEventListener('mousedown', wrongBox)
+        // document.querySelector(`.${currentBox}`).addEventListener('mouseup', wrongBoxUnpress)
+  }
+
+  currentBoxNumber = ""
+  currentBox = ""
+  oldBoxNumber = ""
 }
 
 // Timer
 
-let stopTime = true
 let startingTime = ""
 let endingTime = ""
 
@@ -572,9 +133,9 @@ function gameResult() {
   randomNumberBoxArray = [];
   numberArray = [];
   document.querySelector('button').style.display = 'block';
-  deltaTime = ((endingTime - startingTime - 3000) / 1000);
+  deltaTime = ((endingTime - startingTime) / 1000);
   console.log(deltaTime);
-  console.log((endingTime - startingTime - 3000) / 1000);
+  console.log((endingTime - startingTime) / 1000);
   gameReward();
 }
 
@@ -642,14 +203,6 @@ function gameReward() {
   document.querySelector('.gamecontainer').appendChild(sectionRewardRupee);
 
 }
-  // document.querySelector('.box3').onclick = function() {
-  //
-  //   if (document.querySelector('.box2').style.color == 'white') {
-  //     document.querySelector('.box3').style.backgroundColor = 'rgba(255,0,0,1)';
-  //     document.querySelector('.box3').style.color = 'white';
-  //   }
-  //
-  // }
 
 
 // Breakpoints.
@@ -661,7 +214,3 @@ function gameReward() {
   //   xsmall:  [ null,      '480px'  ],
   // });
 
-
-  // randomNumberBoxArray.forEach(function(arrValue) {
-  // document.querySelector('.gamecontainer').innerHTML += `<section class="${arrValue} box align-center align-middle"><span>${arrValue.substring(3)}</span></section>`
-  // })

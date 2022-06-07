@@ -168,7 +168,7 @@ li {
   border-radius: 6px;
   box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
   box-sizing: border-box;
-  color: #fff;
+  color: rgb(246, 238, 238);
   cursor: pointer;
   display: inline-flex;
   font-family: monospace;
@@ -220,6 +220,11 @@ li {
 }
 
 /* BUTTON CORRECT OR INCORRECT CHECKS */
+
+.firstbox {
+  background-image: radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%);
+  color: 'white';
+}
 
 .incorrectbox:active {
   background-image: radial-gradient(circle, rgba(130,18,18,1) 15%, rgba(149,21,21,1) 65%, rgba(170,23,23,1) 96%);
@@ -283,11 +288,10 @@ button:active {
 }
 
 section > span {
-  text-align: center:
+  text-align: center;
 }
 
 footer {
-
 }
 
 /******************************************
