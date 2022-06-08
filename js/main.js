@@ -91,7 +91,6 @@ function randomCreator() {
 
 function gameStartCheck() {
     //First click doesn't work, don't think box has loaded yet. Value is null when trying to click. why?
-    document.querySelector('.box1').onclick = function() {
 
       document.querySelector('.box1').style.backgroundImage = 'radial-gradient(circle, rgba(46,130,18,1) 15%, rgba(53,149,21,1) 65%, rgba(59,170,23,1) 96%)';
       document.querySelector('.box1').style.color = 'white';
@@ -99,7 +98,6 @@ function gameStartCheck() {
       function correctBoxShading() {
           document.querySelector('.box1').classList.add('correctbox');
       }
-    }
 
     document.querySelector('.box2').onclick = function() {
 
@@ -523,9 +521,9 @@ function gameStartCheck() {
         document.querySelector('.box25').style.color = 'white';
         document.querySelector('.box25').addEventListener('mousedown', correctBoxShading)
         function correctBoxShading() {
-            document.querySelector('.box25').classList.add('correctbox');
-        gameFinish();
+            document.querySelector('.box25').classList.add('correctbox');;
         }
+        gameFinish()
       } else {
           document.querySelector('.box25').addEventListener('mousedown', wrongBox)
           function wrongBox() {
